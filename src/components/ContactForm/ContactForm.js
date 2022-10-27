@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Label, Error } from './ContactForm.styled';
@@ -46,14 +48,25 @@ const initialValues = {
   number: '',
 };
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.items);
+  const onSubmit = values => {
+    const compareContact = contacts.find(
+      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+    );
+
+    compareContact
+      ? alert(`${values.name} is already in contacts`)
+      : dispatch(addContact(values));
+  };
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={schema}
-      onSubmit={(values, actions) => {
+      onSubmit={(values, { resetForm }) => {
         onSubmit(values);
-        actions.resetForm();
+        resetForm();
       }}
     >
       <Form>
@@ -91,7 +104,9 @@ const ContactForm = ({ onSubmit }) => {
             />
           </Label>
         </Box>
-        <Btn type="submit">Add contact</Btn>
+        <Btn type="submit" name="addContact">
+          Add contact
+        </Btn>
       </Form>
     </Formik>
   );

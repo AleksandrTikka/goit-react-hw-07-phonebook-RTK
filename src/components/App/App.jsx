@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Box } from '../Box';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
+// import { addContact, getVisibleContact } from 'redux/contactsSlice';
+// import { useSelector } from 'react-redux';
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
 import ContactList from '../ContactList';
@@ -9,51 +11,53 @@ import { GlobalStyle } from '../GlobalStyle';
 import Section from '../Section';
 
 function App() {
-  const [contacts, setContacts] = useState(
-    JSON.parse(window.localStorage.getItem('contacts')) ?? [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ]
-  );
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(
+  //   JSON.parse(window.localStorage.getItem('contacts')) ?? [
+  //     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  //     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  //   ]
+  // );
+  // const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
-  const addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    const compareContact = contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
+  // const addContact = ({ name, number }) => {
+  //   const contact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
+  //   const compareContact = contacts.find(
+  //     contact => contact.name.toLowerCase() === name.toLowerCase()
+  //   );
 
-    compareContact
-      ? alert(`${name} is already in contacts`)
-      : setContacts(prevContacts => [contact, ...prevContacts]);
-  };
+  //   compareContact
+  //     ? alert(`${name} is already in contacts`)
+  //     : setContacts(prevContacts => [contact, ...prevContacts]);
+  // };
 
-  const getVisibleContacts = () => {
-    const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizeFilter)
-    );
-  };
+  // const getVisibleContacts = () => {
+  //   const normalizeFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizeFilter)
+  //   );
+  // };
 
-  const deleteContact = contactId => {
-    setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== contactId)
-    );
-  };
+  // const deleteContact = contactId => {
+  //   setContacts(prevContacts =>
+  //     prevContacts.filter(contact => contact.id !== contactId)
+  //   );
+  // };
 
-  const changeFilter = e => {
-    setFilter(e.target.value);
-  };
+  // const changeFilter = e => {
+  //   setFilter(e.target.value);
+  // };
+
+  // const contacts = useSelector(state => state.contacts.items);
 
   return (
     <Box
@@ -74,14 +78,11 @@ function App() {
         Phonebook
       </Box>
       <Section>
-        <ContactForm onSubmit={addContact} />
+        <ContactForm />
       </Section>
       <Section title="Contacts">
-        <Filter value={filter} onChange={changeFilter} />
-        <ContactList
-          contacts={getVisibleContacts()}
-          onDeleteContact={deleteContact}
-        />
+        <Filter />
+        <ContactList />
       </Section>
 
       <GlobalStyle />

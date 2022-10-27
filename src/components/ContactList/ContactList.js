@@ -1,8 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+// import { deleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import ContactItem from 'components/ContactItem';
 import { List } from './ContactList.styled';
-const ContactList = ({ contacts, onDeleteContact }) => {
+const ContactList = () => {
+  const contacts = useSelector(state => state.contacts.items);
+  // const dispatch = useDispatch();
+  // const onDeleteContact = () => {
+  //   dispatch(deleteContact);
+  // };
   return (
     <List>
       {contacts.map(contact => {
@@ -12,7 +19,7 @@ const ContactList = ({ contacts, onDeleteContact }) => {
             id={contact.id}
             name={contact.name}
             number={contact.number}
-            deleteContact={onDeleteContact}
+            // deleteContact={onDeleteContact}
           />
         );
       })}
