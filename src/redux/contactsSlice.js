@@ -31,12 +31,6 @@ export const contactsSlice = createSlice({
         contact => contact.id !== action.payload
       );
     },
-    // deleteContact(state, action) {
-    //   const index = state.items.findIndex(
-    //     contact => contact.id === action.payload
-    //   );
-    //   state.items.splice(index, 1);
-    // },
     getVisibleContact(state, action) {
       state.filter = action.payload.toLowerCase();
 
