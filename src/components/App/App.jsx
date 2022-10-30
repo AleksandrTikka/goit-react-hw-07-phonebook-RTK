@@ -1,5 +1,6 @@
-// import { useState, useEffect } from 'react';
 import { Box } from '../Box';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts, addContact } from 'redux/contactsSlice';
 
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
@@ -9,18 +10,13 @@ import { GlobalStyle } from '../GlobalStyle';
 import Section from '../Section';
 
 function App() {
-  // const getVisibleContacts = () => {
-  //   const normalizeFilter = filter.toLowerCase();
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normalizeFilter)
-  //   );
-  // };
-
-  // const changeFilter = e => {
-  //   setFilter(e.target.value);
-  // };
-
-  // const contacts = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const handleFormSubmit = ({ name, number }) => {
+    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+      ? alert(`${name} is already in contacts`)
+      : dispatch(addContact(name, number));
+  };
 
   return (
     <Box
@@ -41,7 +37,7 @@ function App() {
         Phonebook
       </Box>
       <Section>
-        <ContactForm />
+        <ContactForm onSubmit={handleFormSubmit} />
       </Section>
       <Section title="Contacts">
         <Filter />
