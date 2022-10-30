@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter, getVisibleContact } from 'redux/contactsSlice';
-
+import PropTypes from 'prop-types';
 import { Label, Input } from './Filter.styled';
 
 const Filter = () => {
@@ -22,6 +22,10 @@ const Filter = () => {
       />
     </Label>
   );
+};
+Filter.prototype = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Filter;
