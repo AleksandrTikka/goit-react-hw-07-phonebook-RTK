@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact, getContacts } from 'redux/contactsSlice';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Label, Error } from './ContactForm.styled';
@@ -50,8 +49,8 @@ const initialValues = {
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
-  const onSubmit = values => {
+  const contacts = useSelector(getContacts);
+  const handleFormSubmit = values => {
     const compareContact = contacts.find(
       contact => contact.name.toLowerCase() === values.name.toLowerCase()
     );
@@ -65,7 +64,7 @@ const ContactForm = () => {
       initialValues={initialValues}
       validationSchema={schema}
       onSubmit={(values, { resetForm }) => {
-        onSubmit(values);
+        handleFormSubmit(values);
         resetForm();
       }}
     >
@@ -110,10 +109,6 @@ const ContactForm = () => {
       </Form>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
