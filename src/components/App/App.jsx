@@ -1,6 +1,4 @@
 import { Box } from '../Box';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, addContact } from 'redux/contactsSlice';
 
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
@@ -10,14 +8,6 @@ import { GlobalStyle } from '../GlobalStyle';
 import Section from '../Section';
 
 function App() {
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const handleFormSubmit = ({ name, number }) => {
-    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
-      ? alert(`${name} is already in contacts`)
-      : dispatch(addContact(name, number));
-  };
-
   return (
     <Box
       textAlign="center"
@@ -37,7 +27,7 @@ function App() {
         Phonebook
       </Box>
       <Section>
-        <ContactForm onSubmit={handleFormSubmit} />
+        <ContactForm />
       </Section>
       <Section title="Contacts">
         <Filter />
