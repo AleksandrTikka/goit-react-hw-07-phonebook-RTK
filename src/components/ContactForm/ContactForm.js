@@ -53,7 +53,7 @@ const ContactForm = () => {
   const contacts = useSelector(getContacts);
   const handleFormSubmit = ({ name, number }) => {
     console.log({ name, number });
-
+    console.log(contacts);
     contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts`)
       : dispatch(addContact(name, number));
