@@ -14,7 +14,7 @@ export const Input = styled.input`
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radii.sm};
   margin-left: auto;
-  width: 280px;
+  width: 180px;
   :hover,
   :focus {
     outline: ${p => p.theme.borders.bold};

@@ -8,22 +8,24 @@ import { getContacts, getFilter } from 'redux/contactsSlice';
 const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
-  const getNewContacts = () => {
-    if (!filter) {
-      return contacts;
-    }
+  const normalizeFilter = filter && filter.toLowerCase();
+  const newContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizeFilter)
+  );
 
-    const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizeFilter)
-    );
-  };
-  const newContacts = getNewContacts();
+  // const newContacts = getNewContacts();
 
   return (
     <List>
       {newContacts.map(contact => {
-        return <ContactItem key={contact.id} contact={contact} />;
+        return (
+          <ContactItem
+            key={contact.id}
+            id={contact.id}
+            name={contact.name}
+            number={contact.number}
+          />
+        );
       })}
     </List>
   );

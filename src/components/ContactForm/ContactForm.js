@@ -52,8 +52,6 @@ const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const handleFormSubmit = values => {
-    console.log(values);
-    console.log(contacts);
     const compareContact = contacts.find(
       contact => contact.name.toLowerCase() === values.name.toLowerCase()
     );
@@ -61,7 +59,6 @@ const ContactForm = () => {
     compareContact
       ? alert(`${values.name} is already in contacts`)
       : dispatch(addContact(values));
-    console.log(contacts);
   };
 
   return (
