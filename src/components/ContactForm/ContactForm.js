@@ -51,12 +51,17 @@ const initialValues = {
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const handleFormSubmit = ({ name, number }) => {
-    console.log({ name, number });
+  const handleFormSubmit = values => {
+    console.log(values);
     console.log(contacts);
-    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
-      ? alert(`${name} is already in contacts`)
-      : dispatch(addContact(name, number));
+    const compareContact = contacts.find(
+      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+    );
+
+    compareContact
+      ? alert(`${values.name} is already in contacts`)
+      : dispatch(addContact(values));
+    console.log(contacts);
   };
 
   return (

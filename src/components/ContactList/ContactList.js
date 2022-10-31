@@ -23,11 +23,7 @@ const ContactList = () => {
   return (
     <List>
       {newContacts.map(contact => {
-        return (
-          <li key={contact.id}>
-            <ContactItem contact={contact} />
-          </li>
-        );
+        return <ContactItem key={contact.id} contact={contact} />;
       })}
     </List>
   );
