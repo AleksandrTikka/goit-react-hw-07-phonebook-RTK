@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
-//import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-// import { persistReducer } from 'redux-persist';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -54,17 +52,6 @@ const contactsSlice = createSlice({
     [deleteContact.rejected]: handleRejected,
   },
 });
-
-// const persistConfig = {
-//   key: 'contacts',
-//   storage,
-//   blacklist: ['filter'],
-// };
-
-// export const contactsReducer = persistReducer(
-//   persistConfig,
-//   contactsSlice.reducer
-// );
 
 export const { filterContact } = contactsSlice.actions;
 
