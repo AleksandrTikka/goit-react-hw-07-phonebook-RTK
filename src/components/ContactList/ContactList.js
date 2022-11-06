@@ -4,16 +4,18 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContactItem from 'components/ContactItem';
 import { List } from './ContactList.styled';
-import { getContacts, getFilter } from 'redux/contactsSlice';
+import { getContacts, getFilter } from 'redux/selectors';
 const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
+  console.log(filter);
+  console.log(contacts);
   const normalizeFilter = filter && filter.toLowerCase();
   const newContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizeFilter)
   );
 
-  // const newContacts = getNewContacts();
+  // const newContacts = getNewContacts();8787878721512121
 
   return (
     <List>

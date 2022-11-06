@@ -1,18 +1,21 @@
 import { Box } from '../Box';
 import { useDispatch, useSelector } from 'react-redux';
-// import ContactForm from '../ContactForm';
-// import Filter from '../Filter';
-// import ContactList from '../ContactList';
+import ContactForm from '../ContactForm';
+import Filter from '../Filter';
+
 import { GlobalStyle } from '../GlobalStyle';
 
 import Section from '../Section';
-import { getContacts } from 'redux/contactsSlice';
+import { getContacts, getError, getIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations.js';
+import ContactList from 'components/ContactList';
 
 function App() {
   const dispatch = useDispatch();
-  const { items, isLoading, error } = useSelector(getContacts);
+  const contacts = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -35,12 +38,12 @@ function App() {
       <Box as="h1" textAlign="center" color="heading" fontSize="l">
         Phonebook
       </Box>
-      <Section>{/* <ContactForm /> */}</Section>
+      <Section>{<ContactForm />}</Section>
       <Section title="Contacts">
-        {/* <Filter /> */}
+        <Filter />
         {isLoading && <p>Loading contacts...</p>}
         {error && <p>{error}</p>}
-        <p>{items.length > 0 && JSON.stringify(items)}</p>
+        {contacts.length > 0 && <ContactList />}
       </Section>
 
       <GlobalStyle />
