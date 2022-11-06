@@ -23,7 +23,7 @@ const contactsSlice = createSlice({
   initialState: contactInitialState,
 
   reducers: {
-    getVisibleContact(state, action) {
+    filterContact(state, action) {
       state.filter = action.payload;
     },
   },
@@ -66,6 +66,6 @@ const contactsSlice = createSlice({
 //   contactsSlice.reducer
 // );
 
-export const { getVisibleContact } = contactsSlice.actions;
+export const { filterContact } = contactsSlice.actions;
 
 export const contactsReducer = contactsSlice.reducer;

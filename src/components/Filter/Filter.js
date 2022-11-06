@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getVisibleContact } from 'redux/contactsSlice';
-import { getFilter } from 'redux/selectors';
+import { filterContact } from 'redux/contactsSlice';
+import { selectFilter } from 'redux/selectors';
 import PropTypes from 'prop-types';
 import { Label, Input } from './Filter.styled';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
-  const handleChange = e => dispatch(getVisibleContact(e.target.value));
+  const filter = useSelector(selectFilter);
+  const handleChange = e => dispatch(filterContact(e.target.value));
 
   return (
     <Label>
