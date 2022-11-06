@@ -15,8 +15,6 @@ const ContactList = () => {
     contact.name.toLowerCase().includes(normalizeFilter)
   );
 
-  // const newContacts = getNewContacts();8787878721512121
-
   return (
     <List>
       {newContacts.map(contact => {
