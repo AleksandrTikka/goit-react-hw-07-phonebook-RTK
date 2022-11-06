@@ -27,7 +27,7 @@ function App() {
       pt={4}
       mx="auto"
       mt="50px"
-      width="400px"
+      width="450px"
       flexWrap="wrap"
       justifyContent="center"
       border="normal"
