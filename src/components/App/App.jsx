@@ -1,4 +1,5 @@
 import { Box } from '../Box';
+import { SyncLoader } from 'react-spinners';
 // import { useDispatch /*useSelector*/ } from 'react-redux';
 // import ContactForm from '../ContactForm';
 import { useFetchContactsQuery } from 'redux/contactsSlice';
@@ -13,7 +14,7 @@ import Section from '../Section';
 import ContactList from 'components/ContactList';
 
 function App() {
-  const { data, isFetching } = useFetchContactsQuery();
+  const { data: contacts, isFetching } = useFetchContactsQuery();
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectContacts);
   // const isLoading = useSelector(selectIsLoading);
@@ -43,9 +44,9 @@ function App() {
       {/* <Section>{<ContactForm />}</Section> */}
       <Section title="Contacts">
         {/* <Filter /> */}
-        {isFetching && <p>Loading contacts...</p>}
+        {isFetching && <SyncLoader />}
         {/* {error && <p>{error}</p>} */}
-        {data && <ContactList contacts={data} />}
+        {contacts && <ContactList contacts={contacts} />}
       </Section>
 
       <GlobalStyle />
