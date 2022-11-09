@@ -11,8 +11,14 @@ export const contactsApi = createApi({
       query: () => `/contacts`,
     }),
   }),
+  deleteContact: builder.mutation({
+    query: contactId => ({
+      url: `/contacts/${contactId}`,
+      method: 'DELETE',
+    }),
+  }),
 });
-export const { useFetchContactsQuery } = contactsApi;
+export const { useFetchContactsQuery, useDeleteContactMutation } = contactsApi;
 
 // const handlePending = state => {
 //   state.isLoading = true;

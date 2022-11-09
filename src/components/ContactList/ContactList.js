@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ContactItem from 'components/ContactItem';
 import { List } from './ContactList.styled';
 // import { selectVisibleContacts } from 'redux/selectors';
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, deleteContact, deleting }) => {
   // const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
@@ -16,6 +16,8 @@ const ContactList = ({ contacts }) => {
             id={contact.id}
             name={contact.name}
             number={contact.number}
+            deleteContact={deleteContact}
+            deleting={deleting}
           />
         );
       })}
