@@ -2,11 +2,8 @@ import { Box } from '../Box';
 import { SyncLoader } from 'react-spinners';
 // import { useDispatch /*useSelector*/ } from 'react-redux';
 import ContactForm from '../ContactForm';
-import {
-  useFetchContactsQuery,
-  useDeleteContactMutation,
-} from 'redux/contactsSlice';
-// import Filter from '../Filter';
+import { useFetchContactsQuery } from 'redux/contactsSlice';
+import Filter from '../Filter';
 
 import { GlobalStyle } from '../GlobalStyle';
 
@@ -18,7 +15,6 @@ import ContactList from 'components/ContactList';
 
 function App() {
   const { data: contacts, isFetching } = useFetchContactsQuery();
-  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectContacts);
   // const isLoading = useSelector(selectIsLoading);
@@ -47,16 +43,10 @@ function App() {
       </Box>
       <Section>{<ContactForm />}</Section>
       <Section title="Contacts">
-        {/* <Filter /> */}
+        <Filter />
         {isFetching && <SyncLoader />}
         {/* {error && <p>{error}</p>} */}
-        {contacts && (
-          <ContactList
-            contacts={contacts}
-            onDelete={deleteContact}
-            deleting={isDeleting}
-          />
-        )}
+        {contacts && <ContactList contacts={contacts} />}
       </Section>
 
       <GlobalStyle />

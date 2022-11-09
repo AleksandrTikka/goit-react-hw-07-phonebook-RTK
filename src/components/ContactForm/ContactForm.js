@@ -8,6 +8,7 @@ import { Label, Error } from './ContactForm.styled';
 import { Btn } from 'components/App/App.styled';
 import { Box } from '../Box';
 import { useAddContactMutation } from 'redux/contactsSlice';
+import { SyncLoader } from 'react-spinners';
 
 const Input = styled(Field)`
   width: 100%;
@@ -50,7 +51,7 @@ const initialValues = {
 };
 
 const ContactForm = () => {
-  const [addContact] = useAddContactMutation();
+  const [addContact, { isLoading }] = useAddContactMutation();
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectContacts);
   const handleFormSubmit = values => {
@@ -108,8 +109,8 @@ const ContactForm = () => {
             />
           </Label>
         </Box>
-        <Btn type="submit" name="addContact">
-          Add contact
+        <Btn type="submit" name="addContact" disabled={isLoading}>
+          {isLoading && <SyncLoader />} Add contact
         </Btn>
       </Form>
     </Formik>
