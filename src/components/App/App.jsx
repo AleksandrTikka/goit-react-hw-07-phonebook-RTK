@@ -1,7 +1,7 @@
 import { Box } from '../Box';
 import { SyncLoader } from 'react-spinners';
 // import { useDispatch /*useSelector*/ } from 'react-redux';
-// import ContactForm from '../ContactForm';
+import ContactForm from '../ContactForm';
 import {
   useFetchContactsQuery,
   useDeleteContactMutation,
@@ -18,7 +18,7 @@ import ContactList from 'components/ContactList';
 
 function App() {
   const { data: contacts, isFetching } = useFetchContactsQuery();
-  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation;
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectContacts);
   // const isLoading = useSelector(selectIsLoading);
@@ -45,7 +45,7 @@ function App() {
       <Box as="h1" textAlign="center" color="heading" fontSize="l">
         Phonebook
       </Box>
-      {/* <Section>{<ContactForm />}</Section> */}
+      <Section>{<ContactForm />}</Section>
       <Section title="Contacts">
         {/* <Filter /> */}
         {isFetching && <SyncLoader />}

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { selectContacts } from 'redux/selectors';
+// import { addContact } from 'redux/operations';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Label, Error } from './ContactForm.styled';
 import { Btn } from 'components/App/App.styled';
 import { Box } from '../Box';
+import { useAddContactMutation } from 'redux/contactsSlice';
 
 const Input = styled(Field)`
   width: 100%;
@@ -49,16 +50,18 @@ const initialValues = {
 };
 
 const ContactForm = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const [addContact] = useAddContactMutation();
+  // const dispatch = useDispatch();
+  // const contacts = useSelector(selectContacts);
   const handleFormSubmit = values => {
-    const compareContact = contacts.find(
-      contact => contact.name.toLowerCase() === values.name.toLowerCase()
-    );
+    addContact(values);
+    // const compareContact = contacts.find(
+    // contact => contact.name.toLowerCase() === values.name.toLowerCase()
+    // );
 
-    compareContact
-      ? alert(`${values.name} is already in contacts`)
-      : dispatch(addContact(values));
+    // compareContact
+    // ? alert(`${values.name} is already in contacts`)
+    // : dispatch(addContact(values));
   };
 
   return (

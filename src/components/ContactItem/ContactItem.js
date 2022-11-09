@@ -10,8 +10,7 @@ const ContactItem = ({ name, number, id, deleteContact, deleting }) => {
     <Item>
       {name}: {number}
       <Btn type="button" onClick={() => deleteContact(id)}>
-        {deleting ? 'Deleting' : 'Delete'}
-        Delete
+        {deleting ? 'Deleting...' : 'Delete'}
       </Btn>
     </Item>
   );
